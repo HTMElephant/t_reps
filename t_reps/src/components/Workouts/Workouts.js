@@ -1,14 +1,39 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import AppContext from "../../context/AppContext";
 import "./Workouts.css";
 
 const Workouts = () => {
-  const { workouts } = useContext(AppContext);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [newWorkoutName, setNewWorkoutName] = useState("");
+  const [newWorkoutExercises, setNewWorkoutExercises] = useState([]);
+  const { workouts, exercises } = useContext(AppContext);
+
+  const handleClose = () => {
+    setIsCreateModalOpen(false);
+  };
+
+  const addExercise = exercise => {
+    setNewWorkoutExercises([...newWorkoutExercises, exercise]);
+  };
+
+  const removeExercise = exercise => {
+    const newExerciseList = [...newWorkoutExercises];
+    const indexToRemove = newExerciseList.findIndex(
+      ex => ex.id === exercise.id
+    );
+    newExerciseList.splice(indexToRemove, 1);
+    setNewWorkoutExercises(newExerciseList);
+  };
 
   return (
     <div>
       <h1>Workouts</h1>
-      <button className="add-workout-button">Add Workout</button>
+      <button
+        className="add-workout-button"
+        onClick={() => setIsCreateModalOpen(true)}
+      >
+        Add Workout
+      </button>
       <div className="workout-container">
         {workouts.map(workout => (
           <div className="workout">
@@ -18,6 +43,60 @@ const Workouts = () => {
           </div>
         ))}
       </div>
+      {isCreateModalOpen && (
+        <div className="create-modal-background" onClick={handleClose}>
+          <div
+            className="create-modal"
+            onClick={e => {
+              e.stopPropagation();
+            }}
+          >
+            <h3>Create new workout</h3>
+            <div>
+              <input
+                placeholder="Workout name"
+                onChange={e => setNewWorkoutName(e.target.value)}
+              />
+            </div>
+            <h3>Added Exercises</h3>
+            <div className="exercise-container">
+              {newWorkoutExercises.map(exercise => (
+                <div className="exercise">
+                  <div>{exercise.name}</div>
+                  <div>{exercise.body_part}</div>
+                  <div>{exercise.weight_type}</div>
+                    <button onClick={() => removeExercise(exercise)}>-</button>
+                </div>
+              ))}
+            </div>
+            <h3>Available Exercises</h3>
+            <div className="exercise-container">
+              {exercises
+                .filter(
+                  exercise =>
+                  {
+                    const foundMatchingIndex = newWorkoutExercises.findIndex(
+                      ex => ex.id === exercise.id
+                    );
+
+                    const existsInNewList = foundMatchingIndex !== -1;
+
+                    return !existsInNewList;
+                  }
+                )
+                .map(exercise => (
+                  <div className="exercise">
+                    <div>{exercise.name}</div>
+                    <div>{exercise.body_part}</div>
+                    <div>{exercise.weight_type}</div>
+                    <button onClick={() => addExercise(exercise)}>+</button>
+                  </div>
+                ))}
+            </div>
+            <button onClick={handleClose}>CLOSE</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

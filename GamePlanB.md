@@ -16,7 +16,7 @@ now do requirements
 ## Frontend
 
 [x] Users should first see a login screen and should be able to login with email
-[ ] Users should see a list of their workouts after logging in
+[x] Users should see a list of their workouts after logging in
 [ ] This list should have an option to create a new workout
 [ ] When creating a new workout users should see a list of avaialbel excercises
 [ ] Users should be able to add exercises to a workout
