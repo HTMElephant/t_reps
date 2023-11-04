@@ -1,5 +1,6 @@
 import "./App.css";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import { AppProvider } from "./context/AppContext";
 import { useContext } from "react";
 import AppContext from "./context/AppContext";
@@ -10,7 +11,14 @@ function App() {
 
   return (
     <div>
-      {user ? <Router /> : <Login />}
+      {user ? (
+        <>
+          <Router />
+          <Logout />
+        </>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }
@@ -21,6 +29,6 @@ const AppWrapper = () => {
       <App />
     </AppProvider>
   );
-}
+};
 
 export default AppWrapper;
