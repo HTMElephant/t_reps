@@ -2,6 +2,12 @@
 
 ## Requirements
 
+tasks
+set up db
+set up api
+set up react app
+now do requirements
+
 ### Frontend Requirements
 
 - Must have at least 2 routes
@@ -30,6 +36,8 @@
 
 - Users should be able to edit a workout
 - Users should be able to add exercises to the list
+- Should display a warning if user enters invalid credentials
+- User should persist after refresh
 
 ## Database
 
