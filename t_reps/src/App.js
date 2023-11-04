@@ -10,7 +10,7 @@ function App() {
   const { user } = useContext(AppContext);
 
   return (
-    <div>
+    <div className="App">
       {user ? (
         <>
           <Router />
