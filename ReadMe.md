@@ -4,6 +4,20 @@ Welcome to t_reps, a full-stack workout tracker app that integrates React for th
 
 ---
 
+## Running the app
+
+`cd api`
+`npm i`
+`nodemon index.js`
+
+new terminal
+
+`cd t_reps`
+`npm i`
+`npm start`
+
+---
+
 ## Part 1 - Setup
 
 ### 1. Database (DB) Setup
