@@ -21,7 +21,7 @@ now do requirements
 [x] When creating a new workout users should see a list of avaialbel excercises
 [x] Users should be able to add exercises to a workout
 [x] Users should be able to save a workout
-[ ] The Modal we made should be a re-usable component
+[x] The Modal we made should be a re-usable component
 [ ] Users can see exercises on a workout
 [ ] Users can delete a workout
 [ ] Users can start a workout
