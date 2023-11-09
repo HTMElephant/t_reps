@@ -60,7 +60,7 @@ const Workouts = () => {
       </button>
       <div className="workout-container">
         {workouts.map(workout => (
-          <div className="workout">
+          <div className="workout" key={workout.id}>
             <h2>{workout.name}</h2>
             <button>Edit</button>
             <button onClick={() => handleDelete(workout.id)}>Delete</button>
@@ -79,7 +79,7 @@ const Workouts = () => {
         <h3>Added Exercises</h3>
         <div className="exercise-container">
           {newWorkoutExercises.map(exercise => (
-            <div className="exercise">
+            <div className="exercise" key={`added-exercise-${exercise.id}`}>
               <div>{exercise.name}</div>
               <div>{exercise.body_part}</div>
               <div>{exercise.weight_type}</div>
@@ -100,7 +100,7 @@ const Workouts = () => {
               return !existsInNewList;
             })
             .map(exercise => (
-              <div className="exercise">
+              <div className="exercise" key={`available-exercise-${exercise.id}`}>
                 <div>{exercise.name}</div>
                 <div>{exercise.body_part}</div>
                 <div>{exercise.weight_type}</div>
