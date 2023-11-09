@@ -17,10 +17,13 @@ now do requirements
 
 [x] Users should first see a login screen and should be able to login with email
 [x] Users should see a list of their workouts after logging in
-[ ] This list should have an option to create a new workout
-[ ] When creating a new workout users should see a list of avaialbel excercises
-[ ] Users should be able to add exercises to a workout
-[ ] Users should be able to save a workout
+[x] This list should have an option to create a new workout
+[x] When creating a new workout users should see a list of avaialbel excercises
+[x] Users should be able to add exercises to a workout
+[x] Users should be able to save a workout
+[ ] The Modal we made should be a re-usable component
+[ ] Users can see exercises on a workout
+[ ] Users can delete a workout
 [ ] Users can start a workout
 [ ] Once a workout has been started they can end the workout
 [ ] Users should be able to access a history of their workouts that show start and end date

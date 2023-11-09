@@ -1,15 +1,26 @@
 import { useState, useContext } from "react";
 import AppContext from "../../context/AppContext";
 import "./Workouts.css";
+import axios from "axios";
 
 const Workouts = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newWorkoutName, setNewWorkoutName] = useState("");
   const [newWorkoutExercises, setNewWorkoutExercises] = useState([]);
-  const { workouts, exercises } = useContext(AppContext);
+  const { workouts, exercises, user } = useContext(AppContext);
 
   const handleClose = () => {
     setIsCreateModalOpen(false);
+  };
+
+  const handleSave = async () => {
+    const workout = await axios.post(`http://localhost:4001/v1/workouts`, {
+      name: newWorkoutName,
+      user_id: user.id,
+      exercises: newWorkoutExercises,
+    });
+
+    console.log('From the DB!!', {workout});
   };
 
   const addExercise = exercise => {
@@ -93,7 +104,8 @@ const Workouts = () => {
                   </div>
                 ))}
             </div>
-            <button onClick={handleClose}>CLOSE</button>
+            <button onClick={handleClose}>CANCEL</button>
+            <button onClick={handleSave}>SAVE</button>
           </div>
         </div>
       )}
