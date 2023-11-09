@@ -62,6 +62,7 @@ export const AppProvider = ({ children }) => {
         logout,
         workouts,
         exercises,
+        setWorkouts,
       }}
     >
       {children}

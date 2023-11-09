@@ -8,20 +8,23 @@ const Workouts = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newWorkoutName, setNewWorkoutName] = useState("");
   const [newWorkoutExercises, setNewWorkoutExercises] = useState([]);
-  const { workouts, exercises, user } = useContext(AppContext);
+  const { workouts, exercises, user, setWorkouts } = useContext(AppContext);
 
   const handleClose = () => {
+    setNewWorkoutName('');
+    setNewWorkoutExercises([]);
     setIsCreateModalOpen(false);
   };
 
   const handleSave = async () => {
-    const workout = await axios.post(`http://localhost:4001/v1/workouts`, {
+    const { data: workout } = await axios.post(`http://localhost:4001/v1/workouts`, {
       name: newWorkoutName,
       user_id: user.id,
       exercises: newWorkoutExercises,
     });
 
-    console.log("From the DB!!", { workout });
+    setWorkouts(prevState => [...prevState, workout])
+    handleClose();
   };
 
   const addExercise = exercise => {
@@ -55,11 +58,12 @@ const Workouts = () => {
           </div>
         ))}
       </div>
-      <Modal open={isCreateModalOpen} close={handleClose}>
+      <Modal open={isCreateModalOpen} close={() => setIsCreateModalOpen(false)}>
         <h3>Create new workout</h3>
         <div>
           <input
             placeholder="Workout name"
+            value={newWorkoutName}
             onChange={e => setNewWorkoutName(e.target.value)}
           />
         </div>
