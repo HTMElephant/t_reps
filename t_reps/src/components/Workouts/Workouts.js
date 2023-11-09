@@ -27,6 +27,15 @@ const Workouts = () => {
     handleClose();
   };
 
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:4001/v1/workouts/${id}`);
+
+    const newWorkouts = [...workouts];
+    const indexToDelete = newWorkouts.findIndex(w => w.id === id)
+    newWorkouts.splice(indexToDelete, 1);
+    setWorkouts(newWorkouts)
+  };
+
   const addExercise = exercise => {
     setNewWorkoutExercises([...newWorkoutExercises, exercise]);
   };
@@ -54,7 +63,7 @@ const Workouts = () => {
           <div className="workout">
             <h2>{workout.name}</h2>
             <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={() => handleDelete(workout.id)}>Delete</button>
           </div>
         ))}
       </div>
