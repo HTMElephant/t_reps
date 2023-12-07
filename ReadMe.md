@@ -4,7 +4,9 @@ Welcome to t_reps, a full-stack workout tracker app that integrates React for th
 
 ---
 
-## Running the app
+justa  test;l jkasdf;jkl 
+
+## Running the crap
 
 `cd api`
 `npm i`
